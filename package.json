@@ -1,0 +1,16 @@
+{
+  "name": "monorepo",
+  "version": "1.0.0",
+  "description": "caias monorepo poc",
+  "main": "index.js",
+  "repository": "https://github.com/caias/monorepo-temp.git",
+  "author": "이강원 <caias1018@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@4.1.1",
+  "workspaces": [
+    "config/*",
+    "libs/*",
+    "apps/*"
+  ]
+}
