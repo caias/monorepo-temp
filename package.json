@@ -12,5 +12,8 @@
     "config/*",
     "libs/*",
     "apps/*"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
 }

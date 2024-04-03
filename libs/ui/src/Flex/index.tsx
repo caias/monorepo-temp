@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren, CSSProperties } from 'react';
+import { CSSProperties, PropsWithChildren, forwardRef } from 'react';
 
 import type { TAxis, TFlexAlign } from '../utils';
 import Styled from './styled';
@@ -39,14 +39,16 @@ export interface TFlexProps {
   bgColor?: string;
 }
 
-const Flex = forwardRef<HTMLDivElement, PropsWithChildren<TFlexProps>>((props, ref) => {
-  const { children, ...rest } = props;
+const Flex = forwardRef<HTMLDivElement, PropsWithChildren<TFlexProps>>(
+  (props, ref) => {
+    const { children, ...rest } = props;
 
-  return (
-    <Styled.Flex ref={ref} {...rest}>
-      {children}
-    </Styled.Flex>
-  );
-});
+    return (
+      <Styled.Flex ref={ref} {...rest}>
+        {children}
+      </Styled.Flex>
+    );
+  },
+);
 
 export default Flex;
