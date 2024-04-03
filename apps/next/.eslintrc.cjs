@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ['@caias/eslint-config', 'plugin:@next/next/recommended'],
+  extends: ['@caias/eslint-config/next'],
 };
