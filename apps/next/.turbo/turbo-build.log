@@ -1,0 +1,20 @@
+[33mwarn[39m  - Detected next.config.mjs, no exported configuration found. https://nextjs.org/docs/messages/empty-configuration
+[?25l[36minfo[39m  - Linting and checking validity of types [36m.[39m[2K[1G[36minfo[39m  - Linting and checking validity of types [36m..[39m[2K[1G[36minfo[39m  - Linting and checking validity of types [36m...[39m[2K[1G[36minfo[39m  - Linting and checking validity of types [36m.[39m[2K[1G[?25h[36minfo[39m  - Linting and checking validity of types  
+[?25l[36minfo[39m  - Creating an optimized production build [36m.[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m..[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m...[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m.[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m..[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m...[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m.[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m..[39m[2K[1G[36minfo[39m  - Creating an optimized production build [36m...[39m[2K[1G[?25h[36minfo[39m  - Creating an optimized production build  
+[36minfo[39m  - Compiled successfully
+[?25l[36minfo[39m  - Collecting page data [36m.[39m[2K[1G[?25h[36minfo[39m  - Collecting page data  
+[?25l[36m[    ][39m [36minfo[39m  - Generating static pages (0/3)[2K[1G[?25h[36minfo[39m  - Generating static pages (3/3)
+[?25l[36minfo[39m  - Finalizing page optimization [36m.[39m[2K[1G[?25h[36minfo[39m  - Finalizing page optimization  
+
+[4mRoute (pages)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                      14.7 kB        [32m92.8 kB[39m
+└ ○ /404                                   192 B          [32m78.3 kB[39m
++ First Load JS shared by all              [32m78.1 kB[39m
+  ├ chunks/framework-188e2b319562a6dc.js   45.3 kB
+  ├ chunks/main-64ae77af007864db.js        31.8 kB
+  ├ chunks/pages/_app-b379d6eea5535aee.js  201 B
+  └ chunks/webpack-daeb204fdc4a582e.js     803 B
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
+[?25h

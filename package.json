@@ -13,7 +13,14 @@
     "libs/*",
     "apps/*"
   ],
+  "scripts": {
+    "build": "turbo run build",
+    "watch": "turbo run watch"
+  },
   "devDependencies": {
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "turbo": "^1.13.2"
   }
 }
