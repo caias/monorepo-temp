@@ -15,7 +15,8 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "watch": "turbo run watch"
+    "watch": "turbo run watch",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "prettier": "^3.2.5"

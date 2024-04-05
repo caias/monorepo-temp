@@ -1,0 +1,10 @@
+{
+  "name": "@caias/typescript-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "files": [
+    "next",
+    "react"
+  ],
+  "packageManager": "yarn@4.1.1"
+}
