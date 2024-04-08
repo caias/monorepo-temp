@@ -1,9 +1,23 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// eslint-disable-next-line camelcase
+import { Noto_Sans_KR } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const notoSansKr = Noto_Sans_KR({
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'fallback',
+  fallback: [
+    // 디자이너분과 상의한 폴백 폰트 넣으시면 됩니다
+    '-apple-system',
+    'Apple SD Gothic Neo',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'sans-serif',
+  ],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,9 +26,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <html lang="en">
-      <meta name="view-transition" content="same-origin" />
-      <body className={inter.className}>{children}</body>
+    <html lang="ko">
+      <body className={notoSansKr.className}>{children}</body>
     </html>
   );
 }
