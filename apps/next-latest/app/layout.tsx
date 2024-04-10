@@ -3,12 +3,13 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 import './globals.css';
+import Registry from '@components/Registry';
+import GlobalStyle from '@components/GlobalStyle';
 
 const notoSansKr = Noto_Sans_KR({
   weight: ['300', '400', '500', '600', '700'],
-  display: 'fallback',
+  display: 'auto',
   fallback: [
-    // 디자이너분과 상의한 폴백 폰트 넣으시면 됩니다
     '-apple-system',
     'Apple SD Gothic Neo',
     'Apple Color Emoji',
@@ -27,7 +28,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="ko">
-      <body className={notoSansKr.className}>{children}</body>
+      <body className={notoSansKr.className}>
+        <Registry>
+          <GlobalStyle />
+          {children}
+        </Registry>
+      </body>
     </html>
   );
 }

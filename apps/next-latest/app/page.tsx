@@ -1,3 +1,12 @@
+import Wrapper from '@components/Wrapper';
+import StyledInLibs from '@components/StyledInLibs';
+import StyledInNext from '@components/StyledInNext';
+
 export default function Home() {
-  return <>main</>;
+  return (
+    <Wrapper>
+      <StyledInNext />
+      <StyledInLibs />
+    </Wrapper>
+  );
 }

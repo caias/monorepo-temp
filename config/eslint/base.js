@@ -4,6 +4,9 @@ const path = require('path');
 const tsConfig = fs.existsSync('tsconfig.json')
   ? path.resolve('tsconfig.json')
   : undefined;
+const tsNodeConfig = fs.existsSync('tsconfig.node.json')
+  ? path.resolve('tsconfig.node.json')
+  : undefined;
 
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -15,7 +18,7 @@ module.exports = {
     },
   },
   parserOptions: {
-    project: tsConfig,
+    project: [tsConfig, tsNodeConfig],
     createDefaultProgram: true,
     sourceType: 'module',
     ecmaFeatures: {

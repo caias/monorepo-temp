@@ -37,6 +37,7 @@ export interface TFlexProps {
   scroll?: TAxis;
   /** background-color */
   bgColor?: string;
+  gap?: string;
 }
 
 const Flex = forwardRef<HTMLDivElement, PropsWithChildren<TFlexProps>>(
