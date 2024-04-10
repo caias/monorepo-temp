@@ -1,3 +1,4 @@
+'use client';
 import { CSSProperties, memo } from 'react';
 
 import fileNames from '../../assets/icons';
@@ -67,11 +68,14 @@ type TProps = {
 
 export type TIconProps = Partial<TProps>;
 
-const defaultProps = {
-  width: '24px',
-};
-
-function Icon({ name, width, height, style, className, ...rest }: TIconProps) {
+function Icon({
+  name,
+  width = '24px',
+  height,
+  style,
+  className,
+  ...rest
+}: TIconProps) {
   if (name && fileNames.includes(name)) {
     return (
       <svg
@@ -87,7 +91,5 @@ function Icon({ name, width, height, style, className, ...rest }: TIconProps) {
 
   return null;
 }
-
-Icon.defaultProps = defaultProps;
 
 export default memo(Icon);
