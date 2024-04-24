@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn build:svg --log=verbose && next dev",
-    "build": "yarn build:svg --log=verbose && next build",
+    "dev": "rm -rf .next && yarn build:svg && next dev",
+    "build": "rm -rf .next && yarn build:svg && next build",
     "start": "next start",
     "lint": "next lint",
-    "build:svg": "node ./build-svg.js"
+    "build:svg": "node ./build-svg.js  --log=verbose"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
