@@ -1,0 +1,5 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect opacity=".5" width="24" height="24" rx="12" fill="#000"/>
+    <path opacity=".01" fill-rule="evenodd" clip-rule="evenodd" d="M6 18h12V6H6v12z" fill="#fff"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.722 7.721a.75.75 0 0 1 1.06 0l3.22 3.22 3.22-3.22a.75.75 0 0 1 1.06 1.061l-3.22 3.22 3.22 3.22a.75.75 0 1 1-1.06 1.06l-3.22-3.22-3.22 3.22a.75.75 0 0 1-1.06-1.06l3.22-3.22-3.22-3.22a.75.75 0 0 1 0-1.06z" fill="#fff"/>
+</svg>

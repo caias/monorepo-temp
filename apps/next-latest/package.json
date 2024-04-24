@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn build:svg --log=verbose && next dev",
+    "build": "yarn build:svg --log=verbose && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:svg": "node ./build-svg.js"
   },
   "dependencies": {
     "next": "14.1.4",
@@ -18,6 +19,9 @@
     "@caias/typescript-config": "workspace:^",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.12",
+    "node-html-parser": "^6.1.13"
   }
 }
