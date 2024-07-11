@@ -1,0 +1,49 @@
+name: 'test sst 배포'
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '배포 타겟 선택'
+        type: choice
+        default: 'admin'
+        required: true
+        options:
+          - 'admin'
+          - 'web'
+          - 'operator'
+      env:
+        description: '배포 환경 선택'
+        type: choice
+        default: 'dev'
+        required: true
+        options:
+          - 'develop'
+          - 'qa'
+      # version:
+      #   description: '배포 버전 선택'
+      #   type: choice
+      #   default: 'release/2.5.0'
+      #   required: true
+      #   options:
+      #     - 'release/2.5.0'
+      #     - 'release/2.4.1'
+      #     - 'release/2.4.0'
+      #     - 'release/2.3.0'
+      branch:
+        description: '배포 브랜치 입력'
+        required: false
+
+jobs:
+  DeployApp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::891377320112:role/sst-test
+          aws-region: us-east-1g
+      - name: Deploy app
+        run: |
+          npm i && npx sst deploy --stage prod
