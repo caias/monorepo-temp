@@ -44,5 +44,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: 빌드
-        run: cd ./apps/next-latest
-          yarn build
+        run: cd ./apps/next-latest && yarn build
