@@ -37,13 +37,11 @@ jobs:
   DeployApp:
     runs-on: ubuntu-latest
     steps:
-      - name: Git clone the repository
-        uses: actions/checkout@v3
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: AWS 환경 정보 세팅
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::891377320112:oidc-provider/token.actions.githubusercontent.com
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Deploy app
-        run: |
-          npm i && npx sst deploy --stage prod
+      - name: 빌드
+        run: yarn build
