@@ -3,8 +3,8 @@ on:
   push:
     branches: [main]
 env:
-  CACHED_DEPENDENCY_PATHS: '**/node_modules'
-  CACHED_BUILD: ${{ github.workspace }}/apps/next-latest/.next/cache
+  CACHED_DEPENDENCY_PATH: '**/node_modules'
+  CACHED_BUILD_PATH: ${{ github.workspace }}/apps/next-latest/.next/cache
   BUILD_CACHE_KEY: ${{ github.sha }}
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v3
         id: cache_dependencies
         with:
-          path: ${{ env.CACHED_DEPENDENCY_PATHS }}
+          path: ${{ env.CACHED_DEPENDENCY_PATH }}
           key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
       - name: 디펀던시 설치
@@ -67,14 +67,14 @@ jobs:
         uses: actions/cache@v3
         id: cache_dependencies
         with:
-          path: ${{ env.CACHED_DEPENDENCY_PATHS }}
+          path: ${{ env.CACHED_DEPENDENCY_PATH }}
           key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
 
       - name: 빌드 캐시 확인
         uses: actions/cache@v3
         id: cache_built_packages
         with:
-          path: ${{ env.CACHED_BUILD_PATHS }}
+          path: ${{ env.CACHED_BUILD_PATH }}
           key: ${{ env.BUILD_CACHE_KEY }}
 
       - name: 빌드 실행
