@@ -69,8 +69,8 @@ jobs:
       - name: 디펀던시 설치
         if: steps.cache_dependencies.outputs.cache-hit == ''
         run: yarn
-        outputs:
-          dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+      outputs:
+        dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
   job_build:
     name: 빌드 실행
@@ -112,5 +112,5 @@ jobs:
       - name: 빌드 실행
         if: steps.cache_built_packages.outputs.cache-hit == ''
         run: npm run build
-        outputs:
-          dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
+      outputs:
+        dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
