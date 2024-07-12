@@ -77,8 +77,8 @@ jobs:
       - name: 디펀던시 설치
         if: steps.cache_dependencies.outputs.cache-hit == ''
         run: yarn
-    outputs:
-      dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+      outputs:
+        dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
   job_build:
     name: 빌드 실행
@@ -106,12 +106,12 @@ jobs:
       - name: 디펜던시 캐시 확인
         uses: actions/cache@v3
         id: cache_dependencies
-       with:
+        with:
           path: ${{ env.CACHED_DEPENDENCY_PATHS }}
           key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
 
       - name: 빌드 캐시 확인
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache_built_packages
         with:
           path: ${{ env.CACHED_BUILD_PATHS }}
