@@ -8,7 +8,8 @@
     "build": "rm -rf .next && yarn build:svg && next build",
     "start": "next start",
     "lint": "next lint",
-    "build:svg": "node ./build-svg.js  --log=verbose"
+    "build:svg": "node ./build-svg.js  --log=verbose",
+    "deploy:latest": "sst deploy"
   },
   "dependencies": {
     "aws-sdk": "^2.1658.0",

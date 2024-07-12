@@ -34,7 +34,7 @@ jobs:
           path: ${{ env.CACHED_DEPENDENCY_PATH }}
           key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
-      - name: 디펀던시 설치
+      - name: 디펜던시 설치
         if: steps.cache_dependencies.outputs.cache-hit == ''
         run: yarn
     outputs:
@@ -49,7 +49,7 @@ jobs:
         node-version: [20.10.0]
     steps:
       - name: AWS 환경 정보 세팅
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -79,6 +79,8 @@ jobs:
 
       - name: 빌드 실행
         if: steps.cache_built_packages.outputs.cache-hit == ''
-        run: npm run build
+        run: yarn build
+      - name: 배포 실행
+        run: yarn sst deploy
     outputs:
       dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
