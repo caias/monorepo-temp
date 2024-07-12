@@ -47,14 +47,6 @@ jobs:
       matrix:
         node-version: [20.10.0]
     steps:
-      # - name: Repository 체크아웃 - 버전
-      #   if: github.event.inputs.branch == ''
-      #   uses: actions/checkout@v2
-      #   with:
-      #     fetch-depth: 2
-      #     # branch에 맞게 수정
-      #     ref: ${{ github.event.inputs.version }}
-
       - name: Repository 체크아웃
         uses: actions/checkout@v2
 
@@ -77,8 +69,8 @@ jobs:
       - name: 디펀던시 설치
         if: steps.cache_dependencies.outputs.cache-hit == ''
         run: yarn
-      outputs:
-        dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+        outputs:
+          dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
   job_build:
     name: 빌드 실행
