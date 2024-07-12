@@ -1,41 +1,101 @@
 name: 'test sst 배포'
 on:
-  workflow_dispatch:
-    inputs:
-      target:
-        description: '배포 타겟 선택'
-        type: choice
-        default: 'admin'
-        required: true
-        options:
-          - 'admin'
-          - 'web'
-          - 'operator'
-      env:
-        description: '배포 환경 선택'
-        type: choice
-        default: 'dev'
-        required: true
-        options:
-          - 'develop'
-          - 'qa'
-      # version:
-      #   description: '배포 버전 선택'
-      #   type: choice
-      #   default: 'release/2.5.0'
-      #   required: true
-      #   options:
-      #     - 'release/2.5.0'
-      #     - 'release/2.4.1'
-      #     - 'release/2.4.0'
-      #     - 'release/2.3.0'
-      branch:
-        description: '배포 브랜치 입력'
-        required: false
+  push:
+    branches: [main]
+  # workflow_dispatch:
+  #   inputs:
+  #     target:
+  #       description: '배포 타겟 선택'
+  #       type: choice
+  #       default: 'admin'
+  #       required: true
+  #       options:
+  #         - 'admin'
+  #         - 'web'
+  #         - 'operator'
+  #     env:
+  #       description: '배포 환경 선택'
+  #       type: choice
+  #       default: 'dev'
+  #       required: true
+  #       options:
+  #         - 'develop'
+  #         - 'qa'
+  # version:
+  #   description: '배포 버전 선택'
+  #   type: choice
+  #   default: 'release/2.5.0'
+  #   required: true
+  #   options:
+  #     - 'release/2.5.0'
+  #     - 'release/2.4.1'
+  #     - 'release/2.4.0'
+  #     - 'release/2.3.0'
+  # branch:
+  #   description: '배포 브랜치 입력'
+  #   required: false
 
 jobs:
-  DeployApp:
+  job_install_dependencies:
+    name: 배포 환경 구성 - 디펜던시 설치
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.10.0]
+    steps:
+      # - name: Repository 체크아웃 - 버전
+      #   if: github.event.inputs.branch == ''
+      #   uses: actions/checkout@v2
+      #   with:
+      #     fetch-depth: 2
+      #     # branch에 맞게 수정
+      #     ref: ${{ github.event.inputs.version }}
+
+      - name: Repository 체크아웃
+        if: github.event.inputs.branch == ''
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+          # branch에 맞게 수정
+          ref: ${{ github.event.inputs.env }}
+
+      - name: Repository 체크아웃 - 브랜치
+        if: github.event.inputs.branch != ''
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+          # branch에 맞게 수정
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Node.js 세팅 - ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 디펜던시 캐시 키 추출
+        id: compute_lockfile_hash
+        run: echo "hash=${{ hashFiles('yarn.lock') }}" >> $GITHUB_OUTPUT
+
+      - name: 디펜던시 캐시 확인
+        uses: actions/cache@v3
+        id: cache_dependencies
+        with:
+          path: ${{ env.CACHED_DEPENDENCY_PATHS }}
+          key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+
+      - name: 디펀던시 설치
+        if: steps.cache_dependencies.outputs.cache-hit == ''
+        run: yarn
+    outputs:
+      dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+
+  job_build:
+    name: ${{ github.event.inputs.target }} - APP 빌드 + AWS 디플로이 (${{ github.event.inputs.env }})
+    needs: job_install_dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.10.0]
     steps:
       - name: AWS 환경 정보 세팅
         uses: aws-actions/configure-aws-credentials@v1
@@ -43,5 +103,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: 빌드
+
+      - name: Repository 체크아웃
+        uses: actions/checkout@v2
+
+      - name: Node.js 세팅 - ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Deploy 빌드 환경 세팅
+        working-directory: ./apps/next-latest
         run: yarn build
