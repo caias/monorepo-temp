@@ -2,38 +2,6 @@ name: 'test sst 배포'
 on:
   push:
     branches: [main]
-  # workflow_dispatch:
-  #   inputs:
-  #     target:
-  #       description: '배포 타겟 선택'
-  #       type: choice
-  #       default: 'admin'
-  #       required: true
-  #       options:
-  #         - 'admin'
-  #         - 'web'
-  #         - 'operator'
-  #     env:
-  #       description: '배포 환경 선택'
-  #       type: choice
-  #       default: 'dev'
-  #       required: true
-  #       options:
-  #         - 'develop'
-  #         - 'qa'
-  # version:
-  #   description: '배포 버전 선택'
-  #   type: choice
-  #   default: 'release/2.5.0'
-  #   required: true
-  #   options:
-  #     - 'release/2.5.0'
-  #     - 'release/2.4.1'
-  #     - 'release/2.4.0'
-  #     - 'release/2.3.0'
-  # branch:
-  #   description: '배포 브랜치 입력'
-  #   required: false
 env:
   CACHED_DEPENDENCY_PATHS: '**/node_modules'
   CACHED_BUILD: ${{ github.workspace }}/apps/next-latest/.next/cache
@@ -69,8 +37,8 @@ jobs:
       - name: 디펀던시 설치
         if: steps.cache_dependencies.outputs.cache-hit == ''
         run: yarn
-      outputs:
-        dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
+    outputs:
+      dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
 
   job_build:
     name: 빌드 실행
@@ -112,5 +80,5 @@ jobs:
       - name: 빌드 실행
         if: steps.cache_built_packages.outputs.cache-hit == ''
         run: npm run build
-      outputs:
-        dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
+    outputs:
+      dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
