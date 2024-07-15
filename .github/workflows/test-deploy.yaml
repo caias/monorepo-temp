@@ -81,6 +81,6 @@ jobs:
         if: steps.cache_built_packages.outputs.cache-hit == ''
         run: yarn build
       - name: 배포 실행
-        run: yarn sst deploy
+        run: yarn deploy:latest
     outputs:
       dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
