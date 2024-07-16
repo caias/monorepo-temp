@@ -14,6 +14,7 @@ module.exports = {
       version: 'detect',
     },
   },
+  ignorePatterns: ['next.config.mjs'],
   parserOptions: {
     project: tsConfig,
     createDefaultProgram: true,
