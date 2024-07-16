@@ -10,6 +10,9 @@ const config: SSTConfig = {
     const environment = dotenv.config({
       path: `./envs/.env.${stage}`,
     }).parsed;
+
+    console.log({ environment });
+
     return {
       name: 'next-latest',
       region: 'us-east-1',
