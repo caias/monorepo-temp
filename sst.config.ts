@@ -1,5 +1,5 @@
 import type { SSTConfig } from 'sst';
-import { NextjsSite, Bucket } from 'sst/constructs';
+import { NextjsSite } from 'sst/constructs';
 
 const config: SSTConfig = {
   config(input) {
@@ -13,9 +13,9 @@ const config: SSTConfig = {
     app.stack(function Site(arg) {
       console.log({ arg });
       const { stack } = arg;
-      const bucket = new Bucket(stack, 'public');
+      // const bucket = new Bucket(stack, 'public');
       const site = new NextjsSite(stack, 'site', {
-        bind: [bucket],
+        path: './apps/next-latest',
       });
 
       stack.addOutputs({
