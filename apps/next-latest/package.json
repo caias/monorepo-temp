@@ -28,7 +28,6 @@
     "constructs": "10.3.0",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.12",
-    "node-html-parser": "^6.1.13",
-    "sst": "^2.43.3"
+    "node-html-parser": "^6.1.13"
   }
 }
