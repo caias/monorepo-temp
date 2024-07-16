@@ -1,8 +1,5 @@
-import path from 'node:path';
 import type { SSTConfig } from 'sst';
 import { NextjsSite } from 'sst/constructs';
-
-const ROOT_PATH = path.resolve('..', '..');
 
 import dotenv from 'dotenv';
 
@@ -11,7 +8,7 @@ const config: SSTConfig = {
     console.log({ input });
     const stage = input.stage;
     const environment = dotenv.config({
-      path: path.join(ROOT_PATH, 'envs', `.env.${stage}`),
+      path: `./envs/.env.${stage}`,
     }).parsed;
 
     console.log({ environment });
