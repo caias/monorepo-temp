@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
 env:
+  ACTIONS_RUNNER_DEBUG: true,
   CACHED_DEPENDENCY_PATH: '**/node_modules'
   CACHED_BUILD_PATH: ${{ github.workspace }}/apps/next-latest/.next/cache
   BUILD_CACHE_KEY: ${{ github.sha }}
