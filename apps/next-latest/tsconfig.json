@@ -12,6 +12,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "../../sst.config.ts"
+    "../../sst.config.ts",
+    "../../sst-env.d.ts"
   ]
 }

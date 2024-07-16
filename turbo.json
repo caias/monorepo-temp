@@ -10,10 +10,6 @@
       "outputs": ["dist/**"],
       "cache": false
     },
-    "deploy:latest": {
-      "dependsOn": [],
-      "outputs": ["dist/**", ".next/**"]
-    },
     "lint": {},
     "dev": {
       "cache": false,
