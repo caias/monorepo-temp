@@ -11,6 +11,7 @@
     "build:svg": "node ./build-svg.js  --log=verbose"
   },
   "dependencies": {
+    "@libs/ui": "workspace:^",
     "aws-sdk": "^2.1658.0",
     "dotenv": "^16.4.5",
     "next": "14.1.4",

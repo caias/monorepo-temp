@@ -1,9 +1,15 @@
 import type { SSTConfig } from 'sst';
 import { NextjsSite } from 'sst/constructs';
 
+import dotenv from 'dotenv';
+
 const config: SSTConfig = {
   config(input) {
     console.log({ input });
+    const stage = input.stage;
+    const environment = dotenv.config({
+      path: `./envs/.env.${stage}`,
+    }).parsed;
     return {
       name: 'next-latest',
       region: 'us-east-1',

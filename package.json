@@ -16,7 +16,7 @@
     "build": "turbo run build",
     "watch": "turbo run watch",
     "lint": "turbo run lint",
-    "deploy": "sst deploy"
+    "deploy": "sst deploy --stage=dev"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
