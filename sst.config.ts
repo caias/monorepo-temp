@@ -24,7 +24,7 @@ const config: SSTConfig = {
       const { stack } = arg;
       // const bucket = new Bucket(stack, 'public');
       const site = new NextjsSite(stack, 'site', {
-        path: './apps/next-latest',
+        path: './apps/next15',
       });
 
       stack.addOutputs({
