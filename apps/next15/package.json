@@ -1,0 +1,29 @@
+{
+  "name": "next15",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": " yarn watch:css & yarn local",
+    "local": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "watch:css": "panda --watch",
+    "clean:css": "panda --clean"
+  },
+  "dependencies": {
+    "babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.44.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0-rc.0",
+    "typescript": "^5"
+  }
+}
