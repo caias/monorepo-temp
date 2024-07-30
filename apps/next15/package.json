@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": " yarn watch:css & yarn local",
+    "dev": "yarn clean:css && yarn prepare:css && yarn watch:css & yarn local",
     "local": "next dev --turbo",
-    "build": "next build",
+    "build": "yarn clean:css && yarn prepare:css && next build",
     "start": "next start",
     "lint": "next lint",
+    "prepare:css": "panda codegen",
     "watch:css": "panda --watch",
     "clean:css": "panda --clean"
   },
